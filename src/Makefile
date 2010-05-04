@@ -3,8 +3,9 @@
 # The only one that needs changing is the assembler 
 # rule, as we use nasm instead of GNU as.
 
-# binutils-2.20 doesn't handle mboot header well for some reason
-LD=/opt/tc-vanilla/bin/ld
+# Note that binutils-2.20 doesn't handle mboot header well for some reason.
+# I use this path for binutils 2.18 on systems that ship with the borken one.
+PATH:=/opt/tc-vainilla/bin:$(PATH)
 SOURCES=boot.o main.o sprintf.o common.o
 
 CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -std=gnu99 -I.
@@ -17,7 +18,7 @@ clean:
 	rm -f *.o kernel
 
 link:
-	$(LD) $(LDFLAGS) -o kernel $(SOURCES)
+	ld $(LDFLAGS) -o kernel $(SOURCES)
 
 .s.o:
 	nasm $(ASFLAGS) $<

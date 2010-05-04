@@ -6,7 +6,9 @@
 # Note that binutils-2.20 doesn't handle mboot header well for some reason.
 # I use this path for binutils 2.18 on systems that ship with the borken one.
 PATH:=/opt/tc-vainilla/bin:$(PATH)
-SOURCES=boot.o main.o printf.o common.o console.o
+
+SOURCES  = $(patsubst %.c, %.o, $(wildcard *.c))
+SOURCES += $(patsubst %.s, %.o, $(wildcard *.s))
 
 CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -std=gnu99 -I.
 LDFLAGS=-Tlink.ld

@@ -1,4 +1,5 @@
 #include "stdarg.h"
+#include "common.h"
 #include "console.h"
 
 static char *write_hex(char *str, unsigned int n)
@@ -20,6 +21,7 @@ static char *write_hex(char *str, unsigned int n)
 static char *write_dec(char *str, int n)
 {
     char buffer[12];
+    memset(buffer, 0, sizeof(buffer));
 
     if (n < 0) {
         buffer[0] = '-';

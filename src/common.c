@@ -22,3 +22,20 @@ uint16_t inw(uint16_t port)
    asm volatile ("inw %1, %0" : "=a" (ret) : "dN" (port));
    return ret;
 }
+
+void *memset(void *s, int c, uint32_t n)
+{
+    for(int i = 0; i < n; i++) ((uint8_t *)s)[i] = c & 0xFF;
+    return s;
+}
+
+void sleep(uint32_t jiffies)
+{
+    while(jiffies--) {
+        asm volatile("pause");
+        asm volatile("pause");
+        asm volatile("pause");
+        asm volatile("pause");
+        asm volatile("pause");
+    }
+}

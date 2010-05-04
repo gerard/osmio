@@ -1,0 +1,5 @@
+/floppy.img
+/bochslog.txt
+
+*.o
+src/kernel

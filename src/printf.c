@@ -57,6 +57,9 @@ static char *handle_format_char(char *str, char format, va_list *ap)
         for (int i = 0; s[i]; i++) *str++ = s[i];
         break;
     }
+    case 'c':
+        *str++ = (unsigned char)va_arg(*ap, int);
+        break;
     default:
         *str++ = '%';
         *str++ = format;

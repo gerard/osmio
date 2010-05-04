@@ -12,6 +12,6 @@ int main(struct multiboot *mboot_ptr)
     char *s = "test_string";
 
     console_clear();
-    printf("Hello world! %x %d %s\n", test, -test, s);
+    printf("Hello world! %x %d %c %s\n", test, -test, '&', s);
     return 0xDEADBABA;
 }

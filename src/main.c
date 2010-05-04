@@ -8,10 +8,10 @@ struct multiboot;
 
 int main(struct multiboot *mboot_ptr)
 {
-    unsigned int test_hex = 123456;
+    unsigned int test = 123456;
+    char *s = "test_string";
 
-    // All our initialisation calls will go in here.
     console_clear();
-    printf("Hello world! %x\n", test_hex);
+    printf("Hello world! %x %d %s\n", test, -test, s);
     return 0xDEADBABA;
 }

@@ -17,6 +17,28 @@ static char *write_hex(char *str, unsigned int n)
     return str;
 }
 
+static char *write_dec(char *str, int n)
+{
+    char buffer[12];
+
+    if (n < 0) {
+        buffer[0] = '-';
+        n = -n;
+    }
+
+    buffer[11] = '0';
+
+    for (int i = 11; n != 0; i--, n /= 10) {
+        buffer[i] = (n % 10) + 0x30;
+    }
+
+    for (int i = 0; i < 12; i++) {
+        if (buffer[i]) *str++ = buffer[i];
+    }
+
+    return str;
+}
+
 static char *handle_format_char(char *str, char format, va_list *ap)
 {
     switch(format) {
@@ -26,6 +48,15 @@ static char *handle_format_char(char *str, char format, va_list *ap)
     case 'x':
         str = write_hex(str, va_arg(*ap, unsigned int));
         break;
+    case 'd':
+        str = write_dec(str, va_arg(*ap, int));
+        break;
+    case 's':
+    {
+        const char *s = va_arg(*ap, const char *);
+        for (int i = 0; s[i]; i++) *str++ = s[i];
+        break;
+    }
     default:
         *str++ = '%';
         *str++ = format;

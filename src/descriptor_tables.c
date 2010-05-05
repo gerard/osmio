@@ -66,6 +66,18 @@ static void init_idt()
 
    memset(&idt_entries, 0, sizeof(idt_entry_t)*256);
 
+   // Remap the irq table.
+   outb(0x20, 0x11);
+   outb(0xA0, 0x11);
+   outb(0x21, 0x20);
+   outb(0xA1, 0x28);
+   outb(0x21, 0x04);
+   outb(0xA1, 0x02);
+   outb(0x21, 0x01);
+   outb(0xA1, 0x01);
+   outb(0x21, 0x0);
+   outb(0xA1, 0x0);
+
 #define DEFINE_ISR(__n) idt_set_gate(__n, (uint32_t)isr ## __n, 0x08, 0x8E)
    DEFINE_ISR(0);
    DEFINE_ISR(1);
@@ -100,6 +112,24 @@ static void init_idt()
    DEFINE_ISR(30);
    DEFINE_ISR(31);
 #undef DEFINE_ISR
+#define DEFINE_IRQ(__n) idt_set_gate(__n + 32, (uint32_t)irq ## __n, 0x08, 0x8E)
+   DEFINE_IRQ(0);
+   DEFINE_IRQ(1);
+   DEFINE_IRQ(2);
+   DEFINE_IRQ(3);
+   DEFINE_IRQ(4);
+   DEFINE_IRQ(5);
+   DEFINE_IRQ(6);
+   DEFINE_IRQ(7);
+   DEFINE_IRQ(8);
+   DEFINE_IRQ(9);
+   DEFINE_IRQ(10);
+   DEFINE_IRQ(11);
+   DEFINE_IRQ(12);
+   DEFINE_IRQ(13);
+   DEFINE_IRQ(14);
+   DEFINE_IRQ(15);
+#undef DEFINE_IRQ
 
    idt_flush((uint32_t)&idt_ptr);
 }

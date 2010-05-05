@@ -7,10 +7,10 @@
 # I use this path for binutils 2.18 on systems that ship with the borken one.
 PATH:=/opt/tc-vainilla/bin:$(PATH)
 
-SOURCES  = $(patsubst %.c, %.o, $(wildcard *.c))
 SOURCES += $(patsubst %.s, %.o, $(wildcard *.s))
+SOURCES += $(patsubst %.c, %.o, $(wildcard *.c))
 
-CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -std=gnu99 -I.
+CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -std=gnu99 -I. -g
 LDFLAGS=-Tlink.ld
 ASFLAGS=-felf
 

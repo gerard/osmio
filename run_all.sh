@@ -6,4 +6,4 @@ make clean
 make
 cd -
 ./update_image.sh
-./run_bochs.sh
+./run_qemu.sh

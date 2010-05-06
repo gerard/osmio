@@ -5,7 +5,7 @@
 
 # Note that binutils-2.20 doesn't handle mboot header well for some reason.
 # I use this path for binutils 2.18 on systems that ship with the borken one.
-PATH:=/opt/tc-vainilla/bin:$(PATH)
+PATH:=/opt/tc-vanilla/bin:$(PATH)
 
 SOURCES += $(patsubst %.s, %.o, $(wildcard *.s))
 SOURCES += $(patsubst %.c, %.o, $(wildcard *.c))
@@ -20,7 +20,7 @@ clean:
 	rm -f *.o kernel
 
 link:
-	ld $(LDFLAGS) -o kernel $(SOURCES)
+	PATH="$(PATH)" ld $(LDFLAGS) -o kernel $(SOURCES)
 
 .s.o:
 	nasm $(ASFLAGS) $<

@@ -13,7 +13,7 @@ SOURCES += $(patsubst %.c, %.o, $(wildcard *.c))
 CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -std=gnu99 -I. -g
 LDFLAGS=-Tlink.ld
 ASFLAGS=-felf
-CC=PATH=$(PATH) gcc
+CC=PATH=$(PATH) gcc-4.3
 LD=PATH=$(PATH) ld
 
 all: $(SOURCES) link

@@ -6,6 +6,7 @@
 #include "common.h"
 #include "descriptor_tables.h"
 #include "timer.h"
+#include "keyboard.h"
 
 struct multiboot;
 
@@ -23,12 +24,13 @@ void sleep_callback(void *arg)
 int main(struct multiboot *mboot_ptr)
 {
     init_descriptor_tables();
-    enable_interrupts();
+    init_keyboard();
     init_timer(100);
 
     /* Register a timer to trigger in 100 ticks (1 sec) */
     timer_register(100, sleep_callback, (void *)0);
 
+    enable_interrupts();
     console_clear();
 
     /* Now wait for the timer to trigger ... */

@@ -13,6 +13,8 @@ SOURCES += $(patsubst %.c, %.o, $(wildcard *.c))
 CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -std=gnu99 -I. -g
 LDFLAGS=-Tlink.ld
 ASFLAGS=-felf
+CC=PATH=$(PATH) gcc
+LD=PATH=$(PATH) ld
 
 all: $(SOURCES) link
 
@@ -20,7 +22,7 @@ clean:
 	rm -f *.o kernel
 
 link:
-	PATH="$(PATH)" ld $(LDFLAGS) -o kernel $(SOURCES)
+	$(LD) $(LDFLAGS) -o kernel $(SOURCES)
 
 .s.o:
 	nasm $(ASFLAGS) $<

@@ -1,0 +1,15 @@
+CFLAGS=-g -I./stubs -I../src/lib -std=gnu99
+LDFLAGS=-lcheck
+
+# FIXME: Get some proper makefiles (ones in bugnes?)
+
+all: bitset-test
+
+bitset.o: ../src/lib/bitset.c
+	$(CC) $^ -c -o $@ $(CFLAGS)
+
+bitset-test: bitset.o bitset-test.o
+	$(CC) $^ -o $@ $(LDFLAGS)
+
+clean:
+	rm -f bitset-test *.o

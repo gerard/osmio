@@ -3,3 +3,4 @@
 
 *.o
 src/kernel
+t/*-test

@@ -1,5 +1,8 @@
-export CC
-export LD
+include build/system.inc
+
+export CC_TARGET	?= gcc
+export LD_TARGET	?= ld
+export CC_HOST		?= gcc
 
 MEM	?= 32
 ISO	?= osmio.iso

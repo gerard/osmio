@@ -16,8 +16,8 @@ CFLAGS =-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -std=gnu99 -g
 CFLAGS+=-I. -I./lib -I./drivers
 LDFLAGS=-Tlink.ld
 ASFLAGS=-felf
-CC=PATH=$(PATH) gcc-4.3
-LD=PATH=$(PATH) ld
+CC=$(CC_TARGET)
+LD=$(LD_TARGET)
 
 all: $(SOURCES) link
 

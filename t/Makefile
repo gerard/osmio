@@ -1,5 +1,6 @@
-CFLAGS=-g -I./stubs -I../src/lib -std=gnu99
-LDFLAGS=-lcheck
+CC=$(CC_HOST)
+CFLAGS=-g -I./stubs -I../src/lib -std=gnu99 $(shell pkg-config check --cflags)
+LDFLAGS=$(shell pkg-config check --libs)
 
 # FIXME: Get some proper makefiles (ones in bugnes?)
 

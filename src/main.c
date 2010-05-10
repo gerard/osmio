@@ -7,6 +7,7 @@
 #include "descriptor_tables.h"
 #include "timer.h"
 #include "keyboard.h"
+#include "paging.h"
 
 struct multiboot;
 
@@ -26,12 +27,19 @@ int kmain(struct multiboot *mboot_ptr)
     init_descriptor_tables();
     init_keyboard();
     init_timer(100);
+    init_paging();
 
     /* Register a timer to trigger in 100 ticks (1 sec) */
-    timer_register(100, sleep_callback, (void *)0);
+    //timer_register(100, sleep_callback, (void *)0);
 
     enable_interrupts();
     console_clear();
+
+    uint32_t *ptr = (uint32_t*)0xB0000000;
+    uint32_t do_page_fault = *ptr;
+
+    printf("%d\n", do_page_fault);
+
 
     /* Now wait for the timer to trigger ... */
     return 0;

@@ -3,6 +3,7 @@
 
 
 #include "common.h"
+#include "printf.h"
 
 // Write a byte out to the specified port.
 void outb(uint16_t port, uint8_t value)
@@ -39,4 +40,9 @@ void sleep(uint32_t jiffies)
         asm volatile("pause");
         asm volatile("pause");
     }
+}
+
+void panic(char *file, int line, char *s) {
+    printf("%s at %s:%d\n", s, file, line);
+    for(;;);
 }

@@ -13,17 +13,19 @@ typedef          short int16_t;
 typedef unsigned char  uint8_t;
 typedef          char  int8_t;
 
-#define assert (void)
-
 typedef long (*malloc_f)(uint32_t);
-#define NULL ((void *)0)
+
+#define assert              (void)
+#define NULL                ((void *)0)
+#define PANIC(__s)          panic(__FILE__, __LINE__, __s)
 
 void outb(uint16_t port, uint8_t value);
 uint8_t inb(uint16_t port);
 uint16_t inw(uint16_t port);
 
 void *memset(void *s, int c, uint32_t n);
-
 void sleep(uint32_t jiffies);
+
+void panic(char *file, int line, char *s);
 
 #endif

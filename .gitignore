@@ -1,5 +1,7 @@
 /osmio.iso
+/grub/stage2_eltorito
 
 *.o
 src/kernel
 t/*-test
+.*.swp

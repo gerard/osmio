@@ -13,6 +13,8 @@ typedef          short int16_t;
 typedef unsigned char  uint8_t;
 typedef          char  int8_t;
 
+#define assert (void)
+
 typedef long (*malloc_f)(uint32_t);
 #define NULL ((void *)0)
 

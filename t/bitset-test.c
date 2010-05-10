@@ -45,12 +45,26 @@ START_TEST(bitset_fail)
 }
 END_TEST
 
+START_TEST(bitset_full)
+{
+    bitset_t *bset = bitset_alloc(16 * BITSET_BITS_IN_FIELD, (malloc_f)malloc);
+    for (int i = 0; i < 16 * BITSET_BITS_IN_FIELD; i++) {
+        bitset_set(bset, i);
+        CHECK(bitset_test(bset, i) == 1);
+    }
+
+    CHECK(bitset_first_clear(bset) == (uint32_t)-1);
+    free(bset);
+}
+END_TEST
+
 Suite *bitset_suite(void)
 {
     Suite *s = suite_create(MODULE_NAME);
     TCase *tc = tcase_create("main");
     tcase_add_test(tc, bitset_simple);
     tcase_add_test(tc, bitset_fail);
+    tcase_add_test(tc, bitset_full);
     suite_add_tcase(s, tc);
 
     return s;

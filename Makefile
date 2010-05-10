@@ -1,8 +1,8 @@
 include build/system.inc
 
-export CC_TARGET	?= gcc
-export LD_TARGET	?= ld
-export CC_HOST		?= gcc
+export CC_TARGET
+export CC_HOST
+export LD_TARGET
 
 MEM	?= 32
 ISO	?= osmio.iso
@@ -30,7 +30,7 @@ test:
 clean:
 	make -C src clean
 	make -C t clean
-	rm -f $(ISO) bochslog.txt
+	rm -f $(ISO)
 
 logs-clean:
 	rm -f logs/*

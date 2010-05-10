@@ -21,7 +21,7 @@ void sleep_callback(void *arg)
     timer_register(100, sleep_callback, (void *)((int)arg + 1));
 }
 
-int main(struct multiboot *mboot_ptr)
+int kmain(struct multiboot *mboot_ptr)
 {
     init_descriptor_tables();
     init_keyboard();

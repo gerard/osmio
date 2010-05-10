@@ -95,9 +95,13 @@ int vsprintf(char *str, const char *format, va_list ap)
 int sprintf(char *str, const char *format, ...)
 {
     va_list ap;
+    int ret;
+
     va_start(ap, format);
-    vsprintf(str, format, ap);
+    ret = vsprintf(str, format, ap);
     va_end(ap);
+
+    return ret;
 }
 
 int printf(const char *format, ...)

@@ -48,4 +48,6 @@ uint32_t bitset_first_clear(bitset_t *bitset)
             return i * BITSET_BITS_IN_FIELD + j;
         }
     }
+
+    return (uint32_t)0xFFFFFFFF;
 }

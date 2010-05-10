@@ -12,7 +12,7 @@ static const char scode_to_char_tbl[256] = {
     [0x24] = 'j',
 };
 
-static inline scode_is_break(uint8_t c) { return c & 0x80; }
+static inline uint8_t scode_is_break(uint8_t c) { return c & 0x80; }
 
 static void keyboard_callback(registers_t regs)
 {

@@ -1,5 +1,4 @@
 /osmio.iso
-/bochslog.txt
 
 *.o
 src/kernel
